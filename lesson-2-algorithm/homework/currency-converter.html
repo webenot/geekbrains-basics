@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 2. Homework - 1. Currency Converter</title>
+</head>
+<body>
+<script>
+    var usd = 68.2;
+    var eur = 74.1;
+
+    var rub = prompt('Сколько рублей Вы хотите сконвертировать');
+    rub = parseInt(rub);
+    rub = isNaN(rub) ? 0 : rub;
+
+    var resultUsd = rub / usd;
+    var resultEur = rub / eur;
+
+    alert('Вы получите ' + resultUsd.toFixed(2) + ' долларов');
+    alert('Вы получите ' + resultEur.toFixed(2) + ' евро');
+</script>
+</body>
+</html>
