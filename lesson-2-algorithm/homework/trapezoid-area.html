@@ -6,16 +6,13 @@
 </head>
 <body>
 <script>
-    var a = prompt('Введите длину первого основания трапеции');
-    a = parseInt(a);
+    var a = +prompt('Введите длину первого основания трапеции');
     a = isNaN(a) ? 0 : a;
 
-    var b = prompt('Введите длину второго основания трапеции');
-    b = parseInt(b);
+    var b = +prompt('Введите длину второго основания трапеции');
     b = isNaN(b) ? 0 : b;
 
-    var h = prompt('Введите высоту трапеции');
-    h = parseInt(h);
+    var h = +prompt('Введите высоту трапеции');
     h = isNaN(h) ? 0 : h;
 
     var trapezoidArea = ((a + b) / 2) * h;
