@@ -6,95 +6,73 @@
 </head>
 <body>
 <script>
-    function isExitCodeEntered(str, user, exitCode = []) {
-        if (isNaN(+str)) {
-            if (exitCode.indexOf(str.toLowerCase()) !== -1) {
-                return {
-                    exit: true,
-                    user
-                };
-            }
-            return {
-                exit: false,
-                answer: +str
-            }
-        }
-        return {
-            exit: false,
-            answer: +str
-        }
-    }
-
     var exitCode = [
         'exit', 'end', 'stop', 'выход', 'конец', 'стоп'
     ];
 
-
     var exitMessage = 'Для завершения игры введите любую из команд: ' + exitCode.join(', ');
-    alert('Начинаем игру Угадайка (Угадайте число от 0 до 100)!\n' + exitMessage);
+    alert('Начинаем игру Угадайка (Угадайте число от 0 до 100)!');
 
-    var user1 = prompt('Введите имя первого игрока');
-    var user2 = prompt('Введите имя второго игрока');
-    var userResult1 = 0;
-    var userResult2 = 0;
+    var usersCount = 2;
+    var users = [];
+
+    for (var i = 1; i <= usersCount; i++) {
+        var user = prompt('Введите имя ' + i + '-го игрока');
+        users.push(user);
+    }
+
     var currentUserExited = '';
+    var currentUserNumber = 0;
+    var winner = '';
 
     var answer = parseInt(Math.random() * 100);
 
-    var userAnswer = prompt('Игрок ' + user1 + ' угадайте число\n' + exitMessage);
-    var result = isExitCodeEntered(userAnswer, user1, exitCode);
-    if (!result.exit) {
-        userAnswer = result.answer;
-        do {
-            if (userAnswer !== answer) {
-                userAnswer = prompt('Увы, игрок ' + user1 + ' не угадал число. Правильный ответ: ' + answer + '\n' + 'Игрок ' + user2 + ' - Ваш ход, угадайте число\n' + exitMessage);
-            } else {
-                userAnswer = prompt('Поздравляю, игрок ' + user1 + ' угадал число.\n' + 'Игрок ' + user2 + ' - Ваш ход, угадайте число\n' + exitMessage);
-                userResult1++;
+    var tryNumber = 0;
 
-            }
-
-            result = isExitCodeEntered(userAnswer, user1, exitCode);
-            if (result.exit) {
-                currentUserExited = result.user;
+    do {
+        var userAnswer = prompt('Игрок ' + users[currentUserNumber] + ' угадайте число\n' + exitMessage);
+        if (isNaN(+userAnswer)) {
+            if (exitCode.indexOf(userAnswer) !== -1) {
+                currentUserExited = users[currentUserNumber];
                 break;
-            } else {
-                userAnswer = result.answer;
             }
+        }
+        tryNumber++;
+        userAnswer = +userAnswer;
+        if (userAnswer === answer) {
+            alert('Поздравляю, игрок ' + users[currentUserNumber] + ' угадал число.');
+            winner = users[currentUserNumber];
+            break;
+        }
+        if (userAnswer > answer) {
+            alert('Вы ввели слишком большое число.');
+        } else if (userAnswer < answer) {
+            alert('Вы ввели слишком маленькое число.');
+        } else {
+            alert('Вы не ввели целое число');
+        }
+        currentUserNumber++;
+        if (currentUserNumber === usersCount) {
+            currentUserNumber = 0;
+        }
+    } while (true);
 
-            answer = parseInt(Math.random() * 100);
-            if (userAnswer !== answer) {
-                userAnswer = prompt('Увы, игрок ' + user2 + ' не угадал число. Правильный ответ: ' + answer + '\n' + 'Игрок ' + user1 + ' - Ваш ход, угадайте число\n' + exitMessage);
-            } else {
-                userAnswer = prompt('Поздравляю, игрок ' + user2 + ' угадал число.\n' + 'Игрок ' + user1 + ' - Ваш ход, угадайте число\n' + exitMessage);
-                userResult2++;
+    document.write('Правильное число: ' + answer + '<br>');
 
-            }
-            result = isExitCodeEntered(userAnswer, user2, exitCode);
-            if (result.exit) {
-                currentUserExited = result.user;
-                break;
-            } else {
-                userAnswer = result.answer;
-            }
-            answer = parseInt(Math.random() * 100);
-        } while (true);
+    if (tryNumber > 0) {
+        if (currentUserExited) {
+            document.write('Игрок ' + currentUserExited + ' завершил игру<br>');
+            document.write('Правильное число никто не угадал<br>');
+        }
+        if (winner) {
+            document.write('Поздравляем игрока ' + winner + ' с победой!<br>');
+        }
     } else {
-        currentUserExited = result.user;
+        document.write(
+            'Игрок ' + currentUserExited + ' завершил игру даже не начав!<br>Чтобы сыграть - обновите страницу<br>'
+        );
     }
-
-    document.write(
-        'Игрок ' + currentUserExited + ' завершил игру<br>' +
-        'Счет составил ' + user1 + ' (' + userResult1 + ') - ' + user2 + ' (' + userResult2 + ')<br>'
-    );
-    if (userResult1 > userResult2) {
-        document.write('Поздравляю игрока ' + user1 + ' с победой!');
-    } else if (userResult1 < userResult2) {
-        document.write('Поздравляю игрока ' + user2 + ' с победой!');
-    } else {
-        document.write('Поздравляю игроков! Победила дружба!');
-    }
-
+    document.write('Чтобы сыграть еще раз - обновите страницу<br>');
 </script>
 </body>
 </html>
