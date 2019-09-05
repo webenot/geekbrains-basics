@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 2. Homework - 2. Trapezoid Area</title>
+</head>
+<body>
+<script>
+    var a = prompt('Введите длину первого основания трапеции');
+    a = parseInt(a);
+    a = isNaN(a) ? 0 : a;
+
+    var b = prompt('Введите длину второго основания трапеции');
+    b = parseInt(b);
+    b = isNaN(b) ? 0 : b;
+
+    var h = prompt('Введите высоту трапеции');
+    h = parseInt(h);
+    h = isNaN(h) ? 0 : h;
+
+    var trapezoidArea = ((a + b) / 2) * h;
+    alert('Площадь трапеции будет равна ' + trapezoidArea);
+</script>
+</body>
+</html>
