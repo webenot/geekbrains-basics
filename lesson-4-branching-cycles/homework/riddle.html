@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4. Homework - 1. Riddle</title>
+</head>
+<body>
+<script>
+    var riddles = [
+        'Белые шапки надели дома,\n' +
+        'Холодно им - наступила ... ',
+        'В небе - радуга-дуга.\n' +
+        'На грядке - ягода-нуга,\n' +
+        'Солнцем озеро согрето:\n' +
+        'Всех зовёт купаться ...',
+        'Зазвенели ручьи, прилетели грачи.\n' +
+        'В улей пчела первый мёд принесла.\n' +
+        'Кто скажет, кто знает, когда это бывает? ',
+        'Несу я урожаи, и поля вновь засеваю,\n' +
+        'Птиц к югу отправляю, да деревья раздеваю,\n' +
+        'Но не касаюсь сосен и ёлочек, я ...'
+    ];
+
+    var answers = [
+        ['зима', 'zima'],
+        ['лето', 'leto'],
+        ['весна', 'vesna'],
+        ['осень', 'osen'],
+    ];
+
+    var rightAnswers = 0;
+
+    var riddlesCount = riddles.length;
+    for (var riddleCounter = 0; riddleCounter < riddlesCount; riddleCounter++) {
+        var userAnswer = prompt('Отгадайте ' + (riddleCounter + 1) + '-ю загадку:\n' + riddles[riddleCounter]);
+        userAnswer = userAnswer.toLowerCase();
+        if (answers[riddleCounter].indexOf(userAnswer) !== -1) {
+            alert('Поздравляю! Вы правильно разгадали ' + (riddleCounter + 1) + '-ю загадку!');
+            rightAnswers++;
+        } else {
+            alert('Увы, вы не угадали, ответ неверный.\nПравильный ответ: ' + answers[riddleCounter].join(' или '));
+        }
+    }
+
+    var message = 'Игра закончена.<br>';
+
+    if (rightAnswers > 0) {
+        message += 'Вы разгадали ' + rightAnswers + ' загадки из 4';
+    } else {
+        message += 'Увы, Вы не разгадали ни одной загадки';
+    }
+
+    document.write(message);
+
+</script>
+</body>
+</html>

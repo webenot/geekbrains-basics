@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4. Homework - 3. Guessing Game with 2 players</title>
+</head>
+<body>
+<script>
+    var exitCode = [
+        'exit', 'end', 'stop', 'выход', 'конец', 'стоп'
+    ];
+
+    var exitMessage = 'Для завершения игры введите любую из команд: ' + exitCode.join(', ');
+    alert('Начинаем игру Угадайка (Угадайте число от 0 до 100)!');
+
+    var usersCount = 2;
+    var users = [];
+
+    for (var i = 1; i <= usersCount; i++) {
+        var user = prompt('Введите имя ' + i + '-го игрока');
+        users.push(user);
+    }
+
+    var currentUserExited = '';
+    var currentUserNumber = 0;
+    var winner = '';
+
+    var answer = parseInt(Math.random() * 100);
+
+    var tryNumber = 0;
+
+    do {
+        var userAnswer = prompt('Игрок ' + users[currentUserNumber] + ' угадайте число\n' + exitMessage);
+        if (isNaN(+userAnswer)) {
+            if (exitCode.indexOf(userAnswer) !== -1) {
+                currentUserExited = users[currentUserNumber];
+                break;
+            }
+        }
+        tryNumber++;
+        userAnswer = +userAnswer;
+        if (userAnswer === answer) {
+            alert('Поздравляю, игрок ' + users[currentUserNumber] + ' угадал число.');
+            winner = users[currentUserNumber];
+            break;
+        }
+        if (userAnswer > answer) {
+            alert('Вы ввели слишком большое число.');
+        } else if (userAnswer < answer) {
+            alert('Вы ввели слишком маленькое число.');
+        } else {
+            alert('Вы не ввели целое число');
+        }
+        currentUserNumber++;
+        if (currentUserNumber === usersCount) {
+            currentUserNumber = 0;
+        }
+    } while (true);
+
+    document.write('Правильное число: ' + answer + '<br>');
+
+    if (tryNumber > 0) {
+        if (currentUserExited) {
+            document.write('Игрок ' + currentUserExited + ' завершил игру<br>');
+            document.write('Правильное число никто не угадал<br>');
+        }
+        if (winner) {
+            document.write('Поздравляем игрока ' + winner + ' с победой!<br>');
+        }
+    } else {
+        document.write(
+            'Игрок ' + currentUserExited + ' завершил игру даже не начав!<br>Чтобы сыграть - обновите страницу<br>'
+        );
+    }
+    document.write('Чтобы сыграть еще раз - обновите страницу<br>');
+</script>
+</body>
+</html>

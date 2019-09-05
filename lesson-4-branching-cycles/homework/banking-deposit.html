@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4. Homework - 2. Banking Deposit</title>
+</head>
+<body>
+<script>
+    var deposit = +prompt('Введите сумму вклада');
+    deposit = isNaN(deposit) ? 0 : deposit;
+    var percent = +prompt('Введите ежегодную процентную ставку на депозит');
+    percent = isNaN(percent) ? 0 : percent;
+    var years = 5;
+    var resultSum = deposit;
+
+    if (deposit !== 0 && percent !== 0) {
+        for (var i = 1; i <= years; i++) {
+            var percentSum = resultSum * percent / 100;
+            resultSum += percentSum;
+            document.write('Размер вклада на ' + i + '-й год составит ' + resultSum.toFixed(2) + '. Сумма по процентам: ' + percentSum.toFixed(2) + '<br>');
+        }
+    }
+
+    if (deposit === 0) {
+        document.write('Ваш депозит равен 0, поэтому через ' + years + (years % 10 === 1 ? 'год' : (years % 10 < 5 ? 'года' : 'лет')) + ' Вы не получите ничего :)');
+    }
+
+    if (percent === 0) {
+        document.write('Ваша процентная ставка на депозит равна 0, поэтому через ' + years + (years % 10 === 1 ? ' год' : (years % 10 < 5 ? ' года' : ' лет')) + ' Вы получите ту же сумму, которую вложили - ' + deposit);
+    }
+</script>
+</body>
+</html>

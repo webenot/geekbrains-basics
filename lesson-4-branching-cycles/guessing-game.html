@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4. Geesing Game</title>
+</head>
+<body>
+<script>
+    var answer = parseInt(Math.random() * 100);
+    var userAnswer = +prompt('Угадайте число от 0 до 100');
+    var maxTryCount = 2;
+
+    for (var tryCount = 1; tryCount < maxTryCount; tryCount++) {
+        if (userAnswer === answer) {
+            document.write('Поздравляю, Вы угадали!\nПравильный ответ: ' + answer);
+            break;
+        }
+        if (userAnswer > answer) {
+            alert('Вы ввели слишком большое число. ');
+        } else if (userAnswer < answer) {
+            alert('Вы ввели слишком маленькое число. ');
+        }
+
+        userAnswer = +prompt('Попробуйте еще раз. Введите число от 0 до 100\nУ вас осталось ' + (maxTryCount - tryCount) + ' попыток');
+    }
+
+    if (tryCount >= maxTryCount) {
+        alert('Вы проиграли!\nПравильный ответ: ' + answer);
+    }
+
+</script>
+</body>
+</html>

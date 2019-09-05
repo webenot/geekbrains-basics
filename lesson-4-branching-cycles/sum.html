@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4. Sum</title>
+</head>
+<body>
+<script>
+    //var n = +prompt('Пожалуйста, введите число');
+    /*if (isNaN(n)) {
+        document.write('Нужно было ввести число');
+    } else if (n < 0) {
+        document.write('Нужно было ввести положительное число');
+    } else {
+        var sum = 0;
+        for (var i = 0; i <= n; i++) {
+            sum += i;
+            document.write(i + ' ' + sum + '<br>');
+        }
+        document.write(sum);
+    }*/
+    /*if (isNaN(n) || n < 0) {
+        document.write('Нужно было ввести положительное число');
+    } else {
+        var sum = 0;
+        for (var i = 0; i <= n; i++) {
+            sum += i;
+        }
+        document.write(sum);
+    }*/
+    /*while (isNaN(n) || n < 0) {
+        n = +prompt('Пожалуйста, введите число');
+    }
+    var sum = 0;
+    for (var i = 0; i <= n; i++) {
+        sum += i;
+    }
+    document.write(sum);*/
+    do {
+        var n = +prompt('Пожалуйста, введите число');
+    } while (isNaN(n) || n < 0);
+    var sum = 0;
+    for (var i = 0; i <= n; i++) {
+        sum += i;
+    }
+    document.write(sum);
+
+</script>
+</body>
+</html>
