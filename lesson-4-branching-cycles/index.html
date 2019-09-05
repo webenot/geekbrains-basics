@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4. Branching</title>
+</head>
+<body>
+<script>
+    var a = +prompt('Введите первое число');
+    var b = +prompt('Введите второе число');
+
+    /*if (a > b) {
+        var max = a;
+    } else if (a === b) {
+        alert('Числа равны');
+        max = a;
+    } else {
+        max = b;
+    }*/
+
+    var max = a;
+    if (a < b) {
+        max = b;
+    }
+
+    alert(max);
+</script>
+</body>
+</html>
